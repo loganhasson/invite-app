@@ -29,17 +29,6 @@
 <% @invites.each do |invite| %>
   <p>
     <%= link_to invite.guest.name, invite.guest %> | Status: <%= invite.accepted? %>
-    <% if invite.accepted.nil? %>
-      <%= form_for([@event, invite]) do |f| %>
-        <%= f.hidden_field :accepted, :value => true %>
-        <%= f.submit "accept" %>
-      <% end %>
-
-      <%= form_for([@event, invite]) do |f| %>
-        <%= f.hidden_field :accepted, :value => false %>
-        <%= f.submit "decline" %>
-      <% end %>
-    <% end %>
   </p>
 <% end %>
 
