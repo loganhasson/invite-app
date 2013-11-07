@@ -3,14 +3,28 @@
 <h1>
   <%= @user.name %>
 </h1>
+<%= link_to "New Event", new_event_path %>
 
 <h3>Hosting:</h3>
 <% @user.hosted_events.each do |event| %>
-  <p><%= link_to event.name, event %></p>
+  <p><%= link_to event.name, event %> | <%= pluralize(event.invites.where(:accepted => true).size, "confirmed attendee") %>.</p>
 <% end %>
 <h3>Invitations:</h3>
 <% @user.invited_events.each do |event| %>
-  <p><%= link_to event.name, event %></p>
+  <% invite = event.invites.find_by(:guest_id => @user.id) %>
+  <p><%= link_to event.name, event %> | Status: <%= invite.accepted? %>
+    <% if invite.accepted.nil? %>
+      <%= form_for([event, invite]) do |f| %>
+        <%= f.hidden_field :accepted, :value => true %>
+        <%= f.submit "accept" %>
+      <% end %>
+
+      <%= form_for([event, invite]) do |f| %>
+        <%= f.hidden_field :accepted, :value => false %>
+        <%= f.submit "decline" %>
+      <% end %>
+    <% end %>
+  </p>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

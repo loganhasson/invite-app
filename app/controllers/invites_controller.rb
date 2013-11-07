@@ -14,6 +14,7 @@ class InvitesController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @invite = @event.invites.build
+    @guests = User.all
   end
 
   def create
@@ -48,6 +49,6 @@ class InvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
-      params.require(:invite).permit(:event_id, :accepted, :invitee)
+      params.require(:invite).permit(:event_id, :accepted, :guest_id)
     end
 end

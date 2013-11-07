@@ -16,9 +16,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :invitee %><br>
-    <%= f.text_field :invitee %>
+    <%= f.label :guest_id %><br>
+    <%= f.select :guest_id, @guests.map{|h| [h.name, h.id]} %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

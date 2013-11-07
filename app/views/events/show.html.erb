@@ -11,12 +11,12 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @event.date.to_formatted_s(:long_ordinal) %>
+  <%= @event.date.to_formatted_s(:long_ordinal) if @event.date %>
 </p>
 
 <p>
   <strong>Time:</strong>
-  <%= @event.time.to_s(:human_readable_time) %>
+  <%= @event.time.to_s(:human_readable_time) if @event.time %>
 </p>
 
 <p>
@@ -28,7 +28,7 @@
 
 <% @invites.each do |invite| %>
   <p>
-    <%= invite.invitee %> | Status: <%= invite.accepted? %>
+    <%= link_to invite.guest.name, invite.guest %> | Status: <%= invite.accepted? %>
     <% if invite.accepted.nil? %>
       <%= form_for([@event, invite]) do |f| %>
         <%= f.hidden_field :accepted, :value => true %>
