@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date.to_formatted_s(:long_ordinal) %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @event.time.to_s(:human_readable_time) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <em><%= @event.description %></em>
+</p>
+
+<h1>Invitations</h1>
+
+<% @invites.each do |invite| %>
+  <p>
+    <%= invite.invitee %> | Status: <%= invite.accepted? %>
+    <% if invite.accepted.nil? %>
+      <%= form_for([@event, invite]) do |f| %>
+        <%= f.hidden_field :accepted, :value => true %>
+        <%= f.submit "accept" %>
+      <% end %>
+
+      <%= form_for([@event, invite]) do |f| %>
+        <%= f.hidden_field :accepted, :value => false %>
+        <%= f.submit "decline" %>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
+
+<td><%= link_to 'New Invitation', new_event_invite_path(@event) %></td>
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

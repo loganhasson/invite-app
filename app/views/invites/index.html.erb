@@ -1,0 +1,24 @@
+<h1>Listing invites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Accepted</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.invitee %></td>
+        <td><%= invite.accepted? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
