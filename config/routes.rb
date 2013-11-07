@@ -1,4 +1,6 @@
 InviteApp::Application.routes.draw do
+  resources :users
+
   resources :events do
     resources :invites
   end
