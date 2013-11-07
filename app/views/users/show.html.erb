@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @user.name %>
-</p>
+</h1>
 
-<p>
-  <strong>Event:</strong>
-  <%= @user.event_id %>
-</p>
+<h3>Hosting:</h3>
+<% @user.hosted_events.each do |event| %>
+  <p><%= link_to event.name, event %></p>
+<% end %>
+<h3>Invitations:</h3>
+<% @user.invited_events.each do |event| %>
+  <p><%= link_to event.name, event %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.create([{   :name => 'Bob' }, { :name => 'Tommy' }])
+Event.create([{  :name => 'Fun timez', :host_id => 1 }, { :name => "Woo", :host_id => 2}])
+Invite.create([{ :guest_id => 1 }, { :guest_id => 1 }, { :guest_id => 2} ])

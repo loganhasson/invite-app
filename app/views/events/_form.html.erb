@@ -26,6 +26,11 @@
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description, cols: 20, rows: 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :host_id %><br>
+    <%= f.select :host_id, @hosts.map{|h| [h.name, h.id]} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

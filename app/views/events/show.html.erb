@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @event.name %>
+</h1>
+
+<p>
+  <strong>Host:</strong>
+  <em><%= link_to @event.host.name, @event.host %></em>
 </p>
 
 <p>
@@ -17,10 +21,10 @@
 
 <p>
   <strong>Description:</strong>
-  <em><%= @event.description %></em>
+  <%= @event.description %>
 </p>
 
-<h1>Invitations</h1>
+<h2>Invitations</h2>
 
 <% @invites.each do |invite| %>
   <p>
